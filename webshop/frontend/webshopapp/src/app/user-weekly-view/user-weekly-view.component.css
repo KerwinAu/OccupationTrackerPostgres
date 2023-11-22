@@ -1,0 +1,36 @@
+/* user-list.component.css */
+/* Styling for the user list */
+.user-weekly-view {
+    margin-top: 20px;
+}
+
+/* Styling for the user list table */
+.user-weekly-view-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-weekly-view-table th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Styling for table cells */
+.user-weekly-view-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* Styling for radio buttons in a horizontal layout */
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    /* Optional: Add some spacing between groups */
+}
+
+
+

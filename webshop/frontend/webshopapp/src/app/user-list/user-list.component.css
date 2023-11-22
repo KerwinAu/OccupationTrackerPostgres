@@ -1,0 +1,26 @@
+/* user-list.component.css */
+/* Styling for the user list */
+.user-list {
+    margin-top: 20px;
+}
+
+/* Styling for the user list table */
+.user-list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Styling for table headers */
+.user-list-table th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Styling for table cells */
+.user-list-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}

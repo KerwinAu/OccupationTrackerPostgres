@@ -1,0 +1,46 @@
+<p>user-weekly-view works!</p>
+
+<div class="user-weekly-view">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <div class="radio-group" *ngFor="let day of daysOfWeek">
+            <input type="radio" id="{{day}}" name="dayOfWeek" value="{{day}}" ngModel>
+            <label for="{{day}}">{{day}}</label>
+        </div>
+
+        <div class="radio-group" *ngFor="let time of timesOfDay">
+            <input type="radio" id="{{time}}" name="timeOfDay" value="{{time}}" ngModel>
+            <label for="{{time}}">{{time}}</label>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+
+<table class="user-weekly-view-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Day of the Week</th>
+            <th>Day Count</th>
+            <th>Time of the Day</th>
+            <th>Average Checked in Customer Ratio</th>
+            <th>Average Ratio</th>
+            <!-- Add delete button column -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userCalcEntity">
+            <td>{{ user.id }}</td>
+            <td>{{ user.dayOfWeek }}</td>
+            <td>{{ user.dayCount }}</td>
+            <td>{{ user.timeOfDay }}</td>
+            <td>{{ user.avgCountCheckedInCustomer }}</td>
+            <td>{{ user.avgOccupationRatio }}</td>
+            <td>
+                <!-- Add your content for the delete button column -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
