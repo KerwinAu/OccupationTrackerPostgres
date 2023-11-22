@@ -7,7 +7,7 @@ services:
       
       dockerfile: Dockerfile
     image: occupation-tracker-backend:1.0
-    container_name: occupation-tracker-MS-backend
+    container_name: occupation-tracker-postgres-backend
     ports:
       - "8080:8080"
       # wait for postgres to start
@@ -20,7 +20,7 @@ services:
       context: ./frontend/webshopapp
       dockerfile: Dockerfile
     image: occupation-tracker-frontend:1.0
-    container_name: occupation-tracker-MS-frontend
+    container_name: occupation-tracker-postgres-frontend
     ports:
       - "4200:4200"
   
