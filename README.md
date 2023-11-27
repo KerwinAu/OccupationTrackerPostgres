@@ -24,6 +24,8 @@ user.service.ts:
  UserController.java
  @CrossOrigin(origins = "*")
 
+ make port 8081 public
+
 ## dockercompose
 build images 
 docker-compose build 

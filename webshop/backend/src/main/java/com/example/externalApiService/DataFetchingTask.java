@@ -33,6 +33,8 @@ public class DataFetchingTask {
         if (isWithinWeekdayHours(currentDay, currentHour)
                 || isWithinWeekendHours(currentDay, currentHour)) {
             System.out.println("Fetching and saving data");
+            
+            
             // Add this line to print "Fetching and saving data" in the
 
             // terminal
