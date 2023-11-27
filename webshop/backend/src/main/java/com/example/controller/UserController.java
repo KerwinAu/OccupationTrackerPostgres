@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.utility.ResponseUtility;
 
 @RestController
-@RequestMapping(value = "/UserEntity")
 // @CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(allowedOriginPatterns = "*")
 public class UserController {
 
     @Autowired

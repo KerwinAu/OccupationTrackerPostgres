@@ -8,8 +8,9 @@ import { UserEntity } from '../model/user.entity.model'; // Make sure to create 
   providedIn: 'root',
 })
 export class UserService {
-  // auf 8081 wegen POstgres gesetzt
-  private baseUrl = 'http://localhost:8081/UserEntity';
+  // auf 8081 wegen Postgres gesetzt
+  //private baseUrl = 'http://localhost:8081';
+  private baseUrl = 'https://8081-kerwinau-occupationtrac-02uf7ui6f26.ws-eu106.gitpod.io';
 
   constructor(private http: HttpClient) { }
 
