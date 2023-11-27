@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.utility.ResponseUtility;
 
+@CrossOrigin(origins = "*")
 @RestController
 // @CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(allowedOriginPatterns = "*")
 public class UserController {
 
     @Autowired
@@ -32,15 +32,15 @@ public class UserController {
         return userService.create(userEntity);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<UserEntity> getAll() {
         return userService.getAll();
     }
 
-    @GetMapping("/")
-    public String hello() {
-        return "Hello, we are up and running!";
-    }
+    //@GetMapping("/")
+    //public String hello() {
+    //    return "Hello, we are up and running!";
+    //}
 
     // URL: http://localhost:8080/UserEntity/id?id=1
     @GetMapping("/id")

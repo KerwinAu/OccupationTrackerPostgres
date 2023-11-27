@@ -18,6 +18,12 @@ The backend is responsible for handling the business logic and data storage of t
 mvn clean install
 mvn spring-boot:run
 
+user.service.ts:
+ private baseUrl = 'https://8081-kerwinau-occupationtrac-q1g6zl8no3u.ws-eu106.gitpod.io';
+
+ UserController.java
+ @CrossOrigin(origins = "*")
+
 ## dockercompose
 build images 
 docker-compose build 
