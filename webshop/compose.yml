@@ -9,7 +9,7 @@ services:
     image: occupation-tracker-backend:1.0
     container_name: occupation-tracker-postgres-backend
     ports:
-      - "8080:8080"
+      - "8081:8081"
       # wait for postgres to start
     depends_on:
       - postgres
@@ -33,5 +33,5 @@ services:
       POSTGRES_DB: master
     ports:
       - "5432:5432"
-    volumes:
-      - D:\Uni\postgres_container_data:/var/lib/postgresql/data
+    # volumes:
+    #   - D:\Uni\postgres_container_data:/var/lib/postgresql/data

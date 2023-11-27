@@ -17,7 +17,8 @@ import com.example.utility.ResponseUtility;
 
 @RestController
 @RequestMapping(value = "/UserEntity")
-@CrossOrigin(origins = "http://localhost:4200")
+// @CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
     @Autowired

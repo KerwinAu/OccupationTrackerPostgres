@@ -9,9 +9,11 @@ import { UserEntity } from '../model/user.entity.model';
   styleUrls: ['./app-chart.component.css']
 })
 export class AppChartComponent implements OnInit {
-  dps: { x: Date, y: number; id?:number }[] = [];
+  dps: { x: Date, y: number; id?: number }[] = [];
   chart: any;
   updateInterval!: number;
+  availableMonths: string[] = [];
+  selectedMonth: string = '';
 
   chartOptions = {
     exportEnabled: true,
@@ -33,30 +35,60 @@ export class AppChartComponent implements OnInit {
     this.chart = new CanvasJS.Chart("chartContainer", this.chartOptions);
     this.chart.render();
 
-    // Set up the interval for updating the chart
-    this.updateInterval = setInterval(this.updateChart, 1000) as any;
+    // Fetch available months
+    this.userService.getAllUsers().subscribe((users: UserEntity[]) => {
+      this.availableMonths = [...new Set(users.map(user => new Date(user.localDate![0], user.localDate![1] - 1, user.localDate![2]).toLocaleString('default', { month: 'long' })))];
+    });
+
+    // Set the selected month to the current month
+    this.selectedMonth = new Date().toLocaleString('default', { month: 'long' });
+
+    // Update the chart
+    this.updateChart();
+  }
+  onMonthChange(event: any) {
+    this.selectedMonth = event.target.value;
+    this.updateChart();
   }
 
   updateChart = () => {
     // Fetch data from the service
     this.userService.getAllUsers().subscribe(
       (users: UserEntity[]) => {
+        let groupedData: { [date: string]: number[] } = {};
+
+        // Group the data by date and filter by selected month
         for (let j = 0; j < users.length; j++) {
           const user = users[j];
+          const date = new Date(user.localDate![0], user.localDate![1] - 1, user.localDate![2]);
+          const month = date.toLocaleString('default', { month: 'long' });
 
-          // Extracting data for x, y, and id values
-          const xVal = new Date(user.localDate![0], user.localDate![1] - 1, user.localDate![2], user.time![0], user.time![1], user.time![2]);
-          const yVal = (user.occupationRatio || 0).toFixed(2); // Provide a default value if occupationRatio is undefined
-          const idVal = user.id; // Assuming that 'id' is a property in your UserEntity
+          if (month === this.selectedMonth) {
+            const ratio = user.occupationRatio || 0;
 
-          // Push the data to dps
-          this.dps.push({ x: xVal, y: +yVal, id: idVal });
+            if (!groupedData[date.toDateString()]) {
+              groupedData[date.toDateString()] = [];
+            }
 
-          // Shift old data points if the length exceeds the specified data length
-          if (this.dps.length > 48) {
-            this.dps.shift();
+            groupedData[date.toDateString()].push(ratio);
           }
         }
+
+        // Clear dps before pushing new data points
+        this.dps = [];
+
+        // Calculate the average and create data points
+        for (let date in groupedData) {
+          const ratios = groupedData[date];
+          const avgRatio = ratios.reduce((a, b) => a + b, 0) / ratios.length;
+          const xVal = new Date(date);
+          const yVal = avgRatio.toFixed(2);
+
+          this.dps.push({ x: xVal, y: +yVal });
+        }
+
+        // Update the dataPoints property of the chart
+        this.chart.options.data[0].dataPoints = this.dps;
 
         // Render the updated chart
         this.chart.render();
