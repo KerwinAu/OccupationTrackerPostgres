@@ -19,12 +19,13 @@ mvn clean install
 mvn spring-boot:run
 
 user.service.ts:
+needs to be changed !!!
  private baseUrl = 'https://8081-kerwinau-occupationtrac-q1g6zl8no3u.ws-eu106.gitpod.io';
+ make port 8081 public
 
  UserController.java
  @CrossOrigin(origins = "*")
 
- make port 8081 public
 
 ## dockercompose
 build images 
