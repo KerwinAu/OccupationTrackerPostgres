@@ -1,5 +1,5 @@
 -- HighestCheckedInCustomerView
-CREATE VIEW HighestCheckedInCustomerView AS
+CREATE or replace VIEW HighestCheckedInCustomerView AS
 SELECT
     id,
     count_checked_in_customer,
@@ -16,7 +16,7 @@ ORDER BY count_checked_in_customer DESC;
 
 
 -- LowestCheckedInCustomerView
-CREATE VIEW LowestCheckedInCustomerView AS
+CREATE or replace VIEW LowestCheckedInCustomerView AS
 SELECT
     id,
     count_checked_in_customer,
@@ -33,7 +33,7 @@ ORDER BY count_checked_in_customer;
 
 
 -- WeekdaysView
-CREATE VIEW WeekdaysView AS
+CREATE or replace VIEW WeekdaysView AS
 SELECT
     id,
     count_checked_in_customer,
@@ -49,7 +49,7 @@ FROM keauit00_occupied
 WHERE day_type IN ('WEEKDAY');
 
 -- WeekendDaysView
-CREATE VIEW WeekendDaysView AS
+CREATE or replace VIEW WeekendDaysView AS
 SELECT
     id,
     count_checked_in_customer,
