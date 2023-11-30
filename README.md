@@ -5,6 +5,10 @@ This is a web application that consists of a frontend and a backend.
 ## swagger
 http://localhost:8081/swagger-ui/index.html#/user-controller
 
+## opentelemetry
+port 16686
+https://16686-kerwinau-occupationtrac-no97vhlbyvh.ws-eu106.gitpod.io
+
 ## Frontend
 
 The frontend is responsible for displaying the user interface of the web application. To run the frontend, simply open the `index.html` file in your web browser.
