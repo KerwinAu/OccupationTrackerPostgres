@@ -28,7 +28,23 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-netty</artifactId>
+    <version>1.42.1</version> <!-- Use the latest version -->
+</dependency>
 
+    <dependency>
+    <groupId>io.opentelemetry</groupId>
+    <artifactId>opentelemetry-sdk</artifactId>
+    <version>1.7.0</version> <!-- Use the latest version -->
+</dependency>
+
+<dependency>
+    <groupId>io.opentelemetry</groupId>
+    <artifactId>opentelemetry-exporter-jaeger</artifactId>
+    <version>1.7.0</version> <!-- Use the latest version -->
+</dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
