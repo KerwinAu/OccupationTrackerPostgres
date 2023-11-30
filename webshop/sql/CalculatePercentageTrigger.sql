@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS keauit00_occupied (
     id SERIAL PRIMARY KEY,
     count_checked_in_customer INT,
-    day INT,
+    day VARCHAR(20),
     day_type VARCHAR(255),
     local_date DATE,
     max_checkins_allowed INT,

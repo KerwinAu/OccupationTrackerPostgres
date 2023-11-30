@@ -12,7 +12,7 @@ import javax.persistence.ColumnResult;
 @Entity
 @NamedNativeQuery(
     name = "CalculateAverageOccupation",
-    query = "SELECT * FROM CalculateAverageOccupation(:selectedDay, :selectedTimeOfDay) " +
+    query = "SELECT * FROM calculateAverageOccupation(cast(:selectedDay as varchar), cast(:selectedTimeOfDay as varchar)) " +
             "ORDER BY " +
             "CASE DayOfWeek " +
             "    WHEN 'Monday' THEN 1 " +

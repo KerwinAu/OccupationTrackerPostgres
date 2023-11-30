@@ -24,7 +24,7 @@ services:
 
   postgres:
     image: postgres:latest
-    container_name: occupation-tracker-MS
+    container_name: occupation-tracker
     environment:
       POSTGRES_PASSWORD: 3110
       POSTGRES_USER: postgres
@@ -33,3 +33,11 @@ services:
       - "5432:5432"
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - 4318:4318
+      - 16686:16686
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true

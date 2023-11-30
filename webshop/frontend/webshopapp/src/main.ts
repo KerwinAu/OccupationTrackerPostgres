@@ -15,10 +15,14 @@ import { AppChartComponent } from './app/app-chart/app-chart.component';
 import { UserStatusComponent } from './app/user-status/user-status.component';
 import { FormsModule } from '@angular/forms';
 import { FilterDataPipe } from './app/user-weekly-view/filterData.pipe'; // Fix the import path
+import { AboutViewComponent } from './app/about-view/about-view.component';
+
 const routes: Routes = [
-  { path: 'users', component: UserListComponent },
-  { path: 'userCalcEntity', component: UserWeeklyViewComponent  },
-  { path: 'status', component: UserStatusComponent  },
+  { path: 'Occupation', component: UserListComponent },
+  { path: 'Week', component: UserWeeklyViewComponent  },
+  { path: 'active', component: UserStatusComponent  },
+  { path: 'about', component: AboutViewComponent },
+
   // Add other routes as needed
 ];
 
@@ -41,6 +45,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     CanvasJSAngularChartsModule,
     FormsModule,
+
+
     ],
   providers: [UserService],
   bootstrap: [AppComponent],
