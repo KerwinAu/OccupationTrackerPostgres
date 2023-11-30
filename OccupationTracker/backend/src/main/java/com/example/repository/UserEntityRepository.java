@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserEntityRepository extends JpaRepository<UserEntity, Long> {
 
-    @Query(value = "EXEC getMonthlyRecords @selectedMonth = :selectedMonth", nativeQuery = true)
-    List<UserEntity> getOccupiedRecords(@Param("selectedMonth") String selectedMonth);
+@Query(value = "SELECT * FROM getMonthlyRecords(:selectedMonth)", nativeQuery = true)
+List<UserEntity> getMonthlyRecords(@Param("selectedMonth") String selectedMonth);
     
 
     @Query(name = "CalculateAverageOccupation", nativeQuery = true)

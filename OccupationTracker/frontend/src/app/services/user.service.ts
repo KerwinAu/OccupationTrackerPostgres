@@ -45,4 +45,13 @@ export class UserService {
     let url = `${this.baseUrl}/getCurrentStatus`;
     return this.http.get(url);
   }
+
+  getMonthlyRecords(month: string | null): Observable<any> {
+    let url = `${this.baseUrl}/getMonthlyRecords`;
+    if (month && month.trim() !== '') {
+      url += `?selectedMonth=${month}`;
+    }
+    return this.http.get(url);
+  }
+
 }

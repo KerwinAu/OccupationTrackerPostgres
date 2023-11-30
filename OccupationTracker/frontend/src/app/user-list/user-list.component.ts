@@ -10,6 +10,7 @@ import { UserEntity } from '../model/user.entity.model';
 })
 export class UserListComponent implements OnInit {
   users: UserEntity[] = [];
+  selectedMonth: string | null = null; // Add this line
 
   constructor(private userService: UserService) { }
 
@@ -19,6 +20,7 @@ export class UserListComponent implements OnInit {
       this.users = data;
     });
   }
+
 
   deleteUser(userId: number | undefined): void {
     if (userId !== undefined) {
@@ -40,4 +42,5 @@ export class UserListComponent implements OnInit {
       );
     }
   }
+
 }

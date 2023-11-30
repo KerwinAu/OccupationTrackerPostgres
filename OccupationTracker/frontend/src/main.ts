@@ -18,10 +18,11 @@ import { FilterDataPipe } from './app/user-weekly-view/filterData.pipe'; // Fix 
 import { AboutViewComponent } from './app/about-view/about-view.component';
 
 const routes: Routes = [
-  { path: 'Occupation', component: UserListComponent },
-  { path: 'Week', component: UserWeeklyViewComponent  },
-  { path: 'active', component: UserStatusComponent  },
   { path: 'about', component: AboutViewComponent },
+  { path: 'active', component: UserStatusComponent  },
+  { path: 'week', component: UserWeeklyViewComponent  },
+  { path: 'month', component: AppChartComponent },
+  { path: 'overview', component: UserListComponent},
 
   // Add other routes as needed
 ];

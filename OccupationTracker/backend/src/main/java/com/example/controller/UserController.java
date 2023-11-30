@@ -116,11 +116,11 @@ public class UserController {
     }
 
     // Endpoint to get occupied records
-    @GetMapping("/getOccupiedRecords")
-    public List<UserEntity> getOccupiedRecords(@RequestParam("selectedMonth") String selectedMonth) {
+    @GetMapping("/getMonthlyRecords")
+    public List<UserEntity> getMonthlyRecords(@RequestParam("selectedMonth") String selectedMonth) {
         Span span = GlobalOpenTelemetry.getTracer("week").spanBuilder("getOccupiedReccords").startSpan();
         try (Scope scope = span.makeCurrent()) {
-            return userService.getOccupiedRecords(selectedMonth);
+            return userService.getMonthlyRecords(selectedMonth);
         } finally {
             span.end();
         }

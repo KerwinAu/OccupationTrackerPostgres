@@ -17,7 +17,7 @@ public interface UserService {
 
     List<UserEntity>getAll();
 
-    List<UserEntity> getOccupiedRecords(String selectedMonth);
+    List<UserEntity> getMonthlyRecords(String selectedMonth);
   
     List<CalcTableEntity> getCalcTable(String selectedDay, String selectedTimeOfDay);
     

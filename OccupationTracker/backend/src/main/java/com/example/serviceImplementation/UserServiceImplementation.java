@@ -86,8 +86,8 @@ public class UserServiceImplementation implements UserService {
     }
     
     @Override
-    public List<UserEntity> getOccupiedRecords(String selectedMonth) {
-        return userEntityRepository.getOccupiedRecords(selectedMonth);
+    public List<UserEntity> getMonthlyRecords(String selectedMonth) {
+        return userEntityRepository.getMonthlyRecords(selectedMonth);
     }
 
     @Override

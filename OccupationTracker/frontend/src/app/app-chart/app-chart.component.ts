@@ -14,11 +14,13 @@ export class AppChartComponent implements OnInit {
   updateInterval!: number;
   availableMonths: string[] = [];
   selectedMonth: string = '';
+  selectedMonth2: string = '';
+  users: UserEntity[] = [];
 
   chartOptions = {
     exportEnabled: true,
     title: {
-      text: "Angular Dynamic Chart"
+      text: "Monthly Overview"
     },
     data: [{
       type: "line",
@@ -37,19 +39,62 @@ export class AppChartComponent implements OnInit {
 
     // Fetch available months
     this.userService.getAllUsers().subscribe((users: UserEntity[]) => {
-      this.availableMonths = [...new Set(users.map(user => new Date(user.localDate![0], user.localDate![1] - 1, user.localDate![2]).toLocaleString('default', { month: 'long' })))];
+      
+      this.availableMonths = [...new Set(users.map(user => new Date(user.localDate![0], user.localDate![1] - 1, user.localDate![2]).toLocaleString('en-US', { month: 'long' })))];
+      
+      this.availableMonths.unshift('All');
     });
 
+
+    
+
     // Set the selected month to the current month
-    this.selectedMonth = new Date().toLocaleString('default', { month: 'long' });
+    this.selectedMonth = new Date().toLocaleString('en-US', { month: 'long' });
+
+    this.userService.getAllUsers().subscribe(
+      (users: UserEntity[]) => {
+        this.users = users;
+        console.log(this.users);
+      },
+      (error) => {
+        console.error('Error loading user data:', error);
+      }
+    );
 
     // Update the chart
     this.updateChart();
+
+
   }
   onMonthChange(event: any) {
     this.selectedMonth = event.target.value;
-    this.updateChart();
+    this.selectedMonth2 = event.target.value.toUpperCase();
+    if (this.selectedMonth === 'All') {
+    this.userService.getAllUsers().subscribe(
+      (users: UserEntity[]) => {
+        this.users = users;
+        console.log(this.users);
+      },
+      (error) => {
+        console.error('Error loading user data:', error);
+      }
+    );
+  } else {
+    // If a specific month is selected, fetch data for that month
+    this.userService.getMonthlyRecords(this.selectedMonth2).subscribe(
+      (users: UserEntity[]) => {
+        this.users = users;
+        console.log(this.users);
+        console.log(this.selectedMonth);
+      },
+      (error) => {
+        console.error('Error loading occupied records:', error);
+      }
+    );
   }
+
+  this.updateChart();
+}
 
   updateChart = () => {
     // Fetch data from the service
@@ -61,7 +106,7 @@ export class AppChartComponent implements OnInit {
         for (let j = 0; j < users.length; j++) {
           const user = users[j];
           const date = new Date(user.localDate![0], user.localDate![1] - 1, user.localDate![2]);
-          const month = date.toLocaleString('default', { month: 'long' });
+          const month = date.toLocaleString('en-US', { month: 'long' });
 
           if (month === this.selectedMonth) {
             const ratio = user.occupationRatio || 0;

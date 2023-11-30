@@ -1,0 +1,39 @@
+<p>app-chart works!</p>
+<div id="chartContainer" style="height: 370px; width:100%;"></div>
+<!-- In Ihrer HTML-Datei -->
+<select (change)="onMonthChange($event)">
+    <option *ngFor="let month of availableMonths" [value]="month">{{month}}</option>
+</select>
+<table class="app-chart">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Time</th>
+            <th>Local Date</th>
+            <th>timeOfDay</th>
+            <th>Day</th>
+            <th>Month</th>
+            <th>Day Type</th>
+            <th>Max Checkins Allowed</th>
+            <th>Count Checked-in Customer</th>
+            <th>Occupation Ratio</th>
+            <th>Action</th> <!-- Add delete button column -->
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.time + ' Uhr' }}</td>
+            <td>{{ user.timeOfDay }}</td>
+            <td>{{ user.localDate }}</td>
+            <td>{{ user.day }}</td>
+            <td>{{ user.month }}</td>
+            <td>{{ user.dayType }}</td>
+            <td>{{ user.maxCheckinsAllowed }}</td>
+            <td>{{ user.countCheckedInCustomer }}</td>
+            <td>{{ user.occupationRatio ? (user.occupationRatio ).toFixed(2) + '%' : ''}}</td>
+        </tr>
+    </tbody>
+</table>
+
