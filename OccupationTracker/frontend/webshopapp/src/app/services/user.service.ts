@@ -1,56 +1,48 @@
-// user.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserEntity } from '../model/user.entity.model'; // Make sure to create this model
+import { UserEntity } from '../model/user.entity.model'; // Import the UserEntity model
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  // auf 8081 wegen Postgres gesetzt
-  //private baseUrl = 'http://localhost:8081';
-  
+  // Base URL for the backend service
   private baseUrl = 'https://8081-kerwinau-occupationtrac-no97vhlbyvh.ws-eu106.gitpod.io';
 
   constructor(private http: HttpClient) { }
 
+  // Method to create a new user
   createUser(user: UserEntity): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}`, user);
   }
 
+  // Method to get all users
   getAllUsers(): Observable<UserEntity[]> {
     return this.http.get<UserEntity[]>(`${this.baseUrl}`);
   }
 
+  // Method to delete a user
   deleteUser(userId: number): Observable<boolean> {
-    // Construct the correct URL for deletion
     const deleteUrl = `${this.baseUrl}/delete?id=${userId}`;
-
-    // Make the DELETE request
     return this.http.delete<boolean>(deleteUrl);
   }
 
+  // Method to get the calculation table
   getCalcTable(day: string | null, timeofday: string | null): Observable<any> {
-    // Construct the base URL
     let url = `${this.baseUrl}/getCalcTable`;
-    // Add parameters if they are provided and not null or empty
     if (day && day.trim() !== '') {
       url += `?selectedDay=${day}`;
     }
     if (timeofday && timeofday.trim() !== '') {
-      // Use '&' if there's already a parameter
       url += (url.includes('?') ? '&' : '?') + `selectedTimeOfDay=${timeofday}`;
     }
     return this.http.get(url);
   }
 
+  // Method to get the current status
   getCurrentStatus(): Observable<any> {
-    // Construct the base URL
     let url = `${this.baseUrl}/getCurrentStatus`;
     return this.http.get(url);
-
   }
-
-
 }
