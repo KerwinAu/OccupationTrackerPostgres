@@ -21,22 +21,25 @@ Once the application is running, you can access the Swagger UI to test the backe
 
 ## OpenTelemetry
 
-The application incorporates OpenTelemetry for observability. Access the OpenTelemetry UI at the following URL:
+The application incorporates OpenTelemetry for observability. The OpenTelemetry UI runs on port 16686. Access the OpenTelemetry UI at the following URL:
+
 
     OpenTelemetry UI: https://16686-kerwinau-occupationtrac-no97vhlbyvh.ws-eu106.gitpod.io
 
 The OpenTelemetry UI runs on port 16686.
 
+## Backend Service
+The Backend runs on port 8081. Make sure its public.
+
 ## Frontend Service
-
-In the user.service.ts file, update the baseUrl to your gitpod URL:
-
+The Frontend UI runs on port 4200.
+In the OccupationTracker/frontend/src/app/services/user.service.ts file, update the baseUrl to your gitpod URL.
+Currently set too:
 private baseUrl = 'https://8081-kerwinau-occupationtrac-q1g6zl8no3u.ws-eu106.gitpod.io';
 
-Make sure that port 8081 is made public.
 
 ## Database
-
+The Postgres runs on port 5432.
 The application utilizes a PostgreSQL database, and the connection settings are specified in the application.properties file.
 
 
