@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "http://localhost:8081/UserEntity",
+        "target": "https://8081-kerwinau-occupationtrac-no97vhlbyvh.ws-eu107.gitpod.io",
         "secure": false
     }
 }
