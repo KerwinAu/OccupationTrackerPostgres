@@ -16,20 +16,18 @@ To run the application, follow these steps:
 ## Accessing the Application
 
 Once the application is running, you can access the Swagger UI to test the backend at the following URL:
-
-    Swagger UI: http://localhost:8081/swagger-ui/index.html#/user-controller
+ 
+`http://localhost:8081/swagger-ui/index.html#/user-controller`
 
 ## OpenTelemetry
 
 The application incorporates OpenTelemetry for observability. The OpenTelemetry UI runs on port 16686. Access the OpenTelemetry UI at the following URL:
 
+`http://localhost:16686/`
 
-    OpenTelemetry UI: PORT: 16686
-
-The OpenTelemetry UI runs on port 16686.
 
 ## Backend Servic
-The Backend runs on port 8081. Make sure its public.
+The Backend runs on port 8081. 
 
 ## Frontend Service
 The Frontend UI runs on port 4200.
