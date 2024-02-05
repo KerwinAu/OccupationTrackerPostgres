@@ -7,8 +7,7 @@ import { UserEntity } from '../model/user.entity.model'; // Import the UserEntit
   providedIn: 'root',
 })
 export class UserService {
-  // Base URL for the backend service
-  private baseUrl = 'https://8081-kerwinau-occupationtrac-no97vhlbyvh.ws-eu106.gitpod.io';
+  private baseUrl = 'http://localhost:8081';
 
   constructor(private http: HttpClient) { }
 
