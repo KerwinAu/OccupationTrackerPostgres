@@ -28,17 +28,12 @@ The application incorporates OpenTelemetry for observability. The OpenTelemetry 
 
 The OpenTelemetry UI runs on port 16686.
 
-## Backend Service
+## Backend Servic
 The Backend runs on port 8081. Make sure its public.
 
 ## Frontend Service
 The Frontend UI runs on port 4200.
-In the OccupationTracker/frontend/src/app/services/user.service.ts file, update the baseUrl to your gitpod PORT 8081 URL.
-Currently set too:
-private baseUrl = 'https://8081-kerwinau-occupationtrac-q1g6zl8no3u.ws-eu106.gitpod.io';
-In path: OccupationTracker/frontend/proxy.config.json
-change also to your gitpod PORT 8081
-make sure the Port is set to "public"
+
 
 ## Database
 The Postgres runs on port 5432.
