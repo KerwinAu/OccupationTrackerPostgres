@@ -11,7 +11,17 @@ services:
       - "8081:8081"
     depends_on:
       - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/master
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 3110
+      OTEL_SERVICE_NAME: backend
+      OTEL_TRACES_EXPORTER: jaeger
+      OTEL_METRICS_EXPORTER: none
+      OTEL_EXPORTER_JAEGER_ENDPOINT: http://jaeger:4318/
     command: ["/app/wait-for-it.sh", "postgres:5432", "--", "java", "-jar", "/app/webshop-0.0.1-SNAPSHOT.jar"]
+    networks:
+      - trackernetwork
 
   frontend:
     build:
@@ -21,6 +31,8 @@ services:
     container_name: occupation-tracker-postgres-frontend
     ports:
       - "4200:4200"
+    networks:
+      - trackernetwork
 
   postgres:
     image: postgres:latest
@@ -33,11 +45,20 @@ services:
       - "5432:5432"
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
+    networks:
+      - trackernetwork
 
   jaeger:
+    container_name: jaeger
     image: jaegertracing/all-in-one:latest
     ports:
       - 4318:4318
       - 16686:16686
     environment:
       - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - trackernetwork
+
+networks:
+  trackernetwork:
+    driver: bridge
